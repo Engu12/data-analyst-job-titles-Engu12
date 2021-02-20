@@ -6,19 +6,20 @@
  
    */
    
- --   Answer   1793
-
+ --  Answer   1793
+ 
 --2 . Write a query to look at just the first 10 rows. What company is associated with the job posting on the 10th row?
-
   
-	/*SELECT company
+	/*
+	
+	SELECT company
 	FROM data_analyst_jobs 
 	--LIMIT 10
-	fetch NTH_Value(company,10); */
-
-  
-    
- --    Answer   Exxon Mobil
+	fetch NTH_Value(company,10); 
+	
+	*/
+      
+ -- Answer  Exxon Mobil
 
 --3 . How many postings are in Tennessee? How many are there in either Tennessee or Kentucky?
 
@@ -87,8 +88,9 @@
   /*  SELECT DISTINCT company
       From data_analyst_jobs
       where review_count >5000 AND company IS NOT NULL
-	
+	  GROUP BY  Company */
 --and 9 a  Name of Companies with all the criterias mention there .
+
  /*SELECT COUNT(DISTINCT company)
     From data_analyst_jobs
     where review_count >5000 AND company IS NOT NULL */
@@ -98,18 +100,17 @@
 --10  Add the code to order the query in #9 from highest to lowest average star rating. Which company 
 --    with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating?
 
-   
-/*SELECT DISTINCT company,ROUND(star_rating,1)as star_rating 
-    From data_analyst_jobs
-    where review_count >5000
-    order by star_rating desc*/
+
+/*  SELECT DISTINCT company,ROUND(star_rating,1) AS star_rating 
+    FROM data_analyst_jobs
+    WHERE review_count >5000
+    ORDER BY star_rating DESC*/
 	
 --Answer top 6 companies having star_rating  4.2
 
-
 --11 . Find all the job titles that contain the word ‘Analyst’. How many different job titles are there?
 
- /*   SELECT COUNT(title)
+ /* SELECT COUNT(title)
 	FROM data_analyst_jobs
 	WHERE lower(title) LIKE '%analyst%';	
 */
@@ -132,13 +133,18 @@
       Qd. Which three industries are in the top 4 on this list? How many jobs have been listed for more than 3 weeks for each of the top 4?
 */	  
 	
+/*	 SELECT domain, title, skill
+     FROM data_analyst_jobs
+     WHERE domain IS NOT null AND LOWER(skill) LIKE '%sql%' AND days_since_posting> 21 */
 	
- 	 SELECT domain, COUNT(title) AS num_jobs
-	 FROM data_analyst_jobs
-	 WHERE skill ILIKE '%SQL%' AND days_since_posting >= 21  AND domain IS NOT NULL
-	 GROUP BY domain
-	 ORDER BY num_jobs DESC
-	 Limit 3;
+-- This above code is just for explanation .
+	
+ 	/*ELECT domain, COUNT(title) AS Num_Pos
+     FROM data_analyst_jobs
+     WHERE domain IS NOT null AND LOWER(skill) LIKE '%sql%' AND days_since_posting>21
+     GROUP BY domain
+     ORDER BY Num_Pos DESC
+     LIMIT 4; */
 
 
 
